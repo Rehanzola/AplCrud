@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:id="@+id/rvcategory"
         tools:listitem="@layout/item_data"
-        app: LayoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:LayoutManager="androidx.recyclerview.widget.LinearLayoutManager"
     android:layout_above="@id/btnTambah">
     </androidx.recyclerview.widget.RecyclerView>
     <Button

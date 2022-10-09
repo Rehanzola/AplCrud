@@ -2,7 +2,7 @@ package com.pram.activitystaff
 
 import com.google.gson.annotations.SerializedName
 
-data class ResultStaff {
+class ResultStaff {
     @field: SerializedName("pesan")
     val pesan: String? = null
 

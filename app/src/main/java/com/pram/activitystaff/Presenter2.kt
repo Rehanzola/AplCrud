@@ -1,49 +1,53 @@
 package com.pram.activitystaff
 
+import android.util.Log
 import android.telecom.Call
+import retrofit2.Callback
 import retrofit2.Response
-
-class Presenter2 (val crudView: UpdateAddActivity) {
-    ///Add data
-    fun(name: String, hp: string, alamat: string) {
+class Presenter2(val crudView: UpdateAddActivity) {
+    //Add data
+    fun aadData(name: String, hp: String, alamat: String) {
         NetworkConfig.getService()
             .addStaff(name, hp, alamat)
             .enqueue(object : retrofit2.Callback<ResultStatus> {
-                override fun onFailure(call: Call<ResultStatus>, t: Throwable) {
+                override fun onFailure(call: retrofit2.Call<ResultStatus>, t: Throwable) {
                     crudView.onErrorAdd(t.localizedMessage)
                 }
 
                 override fun onResponse(
-                    call: Call<ResultStatus>, response: Response<ResultStatus>
+                    call: retrofit2.Call<ResultStatus>, response: Response<ResultStatus>
                 ) {
-                    if (response.isSuccessful && response.body?.status = 200) {
-                        crudView.onSuccessAdd(mig response . body ?. pesan ?: "")
+                    if (response.isSuccessful && response.body()?.status == 200) {
+                        crudView.onSuccessAdd(response.body()?.pesan ?: "")
                     } else {
                         crudView.onErrorAdd(response.body()?.pesan ?: "")
                     }
                 }
             })
+
+        //update data
+        fun updateData(id: String, name: String, hp: String, alamat: String) {
+            NetworkConfig.getService()
+                .updateStaff(id, name, hp, alamat)
+                .enqueue(object : retrofit2.Callback<ResultStatus> {
+                    override fun onFailure(call: retrofit2.Call<ResultStatus>, t: Throwable) {
+                        crudView.onErrorupdate(t.localizedMessage)
+                    }
+
+                    override fun onResponse(
+                        call: retrofit2.Call<ResultStatus>, response: Response<ResultStatus>
+                    ) {
+                        if (response.isSuccessful && response.body()?.status == 200) {
+                            crudView.onSuccessUpdate(response.body()?.pesan ?: "")
+                        } else {
+                            crudView.onErrorupdate(response.body()?.pesan ?: "")
+                        }
+                    }
+                })
+        }
     }
 
-    //update data
-    fun updateData(id: String, name: String, hp: String, alamat: string) {
-        NetworkConfig.getService()
-            .updateStaff(id, name, hp, alamat)
-            .enqueue(object : retrofit2.Callback<ResultStatus> {
-                override fun onFailure(call: Call<ResultStatus>, t: Throwable) {
-                    crudView.onErrorupdate(t.localizedMessage)
-                }
+    private fun Any.enqueue(callback: Callback<ResultStatus>) {
 
-                override fun onResponse(
-                    call: Call<ResultStatus>, response: Response<ResultStatus>
-                ) {
-                    if (response.isSuccessful && response.body()?.status == 200) {
-                        crudView.onSuccessUpdate(response.body()?.pesan ?: "")
-                    } else {
-                        crudView.onErrorupdate(response.body()?.pesan ?: "")
-                    }
-                }
-            })
     }
 }
-

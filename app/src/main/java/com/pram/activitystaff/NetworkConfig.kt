@@ -47,7 +47,7 @@ interface StaffService {
 
     //fungsi get data
     @GET("getDataStaff")
-    fun getData() Call<ResultStaff>
+    fun getData() : Call<ResultStaff>
 
     //fungsi update dato
     @FormUrlEncoded
@@ -57,4 +57,9 @@ interface StaffService {
         @Field("name") name: String,
         @Field("hp") hp: String,
         @Field("alamat") alamat: String): Call<ResultStatus>
+
+    //fungsi delete
+    @FormUrlEncoded
+    @POST("deleteStaff")
+    fun deleteStaff(@Field("id") id: String?) : Call<ResultStatus>
 }
