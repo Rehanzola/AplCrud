@@ -5,14 +5,16 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     tools:context=".MainActivity">
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/rvcategory"
         tools:listitem="@layout/item_data"
-        app:LayoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
     android:layout_above="@id/btnTambah">
     </androidx.recyclerview.widget.RecyclerView>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

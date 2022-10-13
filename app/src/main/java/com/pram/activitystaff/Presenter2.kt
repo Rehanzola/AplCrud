@@ -1,12 +1,11 @@
 package com.pram.activitystaff
 
-import android.util.Log
-import android.telecom.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 class Presenter2(val crudView: UpdateAddActivity) {
     //Add data
-    fun aadData(name: String, hp: String, alamat: String) {
+    fun addData(name: String, hp: String, alamat: String) {
         NetworkConfig.getService()
             .addStaff(name, hp, alamat)
             .enqueue(object : retrofit2.Callback<ResultStatus> {
@@ -24,7 +23,7 @@ class Presenter2(val crudView: UpdateAddActivity) {
                     }
                 }
             })
-
+    }
         //update data
         fun updateData(id: String, name: String, hp: String, alamat: String) {
             NetworkConfig.getService()
@@ -50,4 +49,3 @@ class Presenter2(val crudView: UpdateAddActivity) {
     private fun Any.enqueue(callback: Callback<ResultStatus>) {
 
     }
-}
