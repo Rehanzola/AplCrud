@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Activity Staff</string>
+    <string name="todo">TODO</string>
+    <string name="designed_by_you">designed by you</string>
 </resources>
